@@ -1,0 +1,787 @@
+html {
+  box-sizing: border-box; /* все padding за счет самого элемента */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit; /* все элементы и псевдоэлементы inherit, т.е. такие же как и у их родителей */
+}
+
+:root {
+  --orange: #FF9900;
+  --main-text-color: #333;
+  --white-color: #FFF;
+  --form-backgr: #414141;
+  --footer-backgr: #222;
+  --footer-text-color: #CACACA;
+  --dark-orange: #E1670E;
+  --black-color: #000;
+  --gray: #666;
+  --orange-s-working: #F7B045;
+  --border-checkbox: #b3d7ff;
+}
+
+a {
+  color: inherit; /* цвет наследуется от класса родителя */
+  text-decoration: none;
+}
+/*
+a:active {
+  transform: translateY(1px);
+} */
+
+img {
+  min-width: 100%;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat-Regular'),
+  url('../fonts/Montserrat-Regular.woff2') format('woff2'),
+  url('../fonts/Montserrat-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* шрифты будут загружены до тех пор пока пользователь не загрузит шрифт */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat-Light'),
+  url('../fonts/Montserrat-Light.woff2') format('woff2'),
+  url('../fonts/Montserrat-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap; /* шрифты будут загружены до тех пор пока пользователь не загрузит шрифт */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat-Medium'),
+  url('../fonts/Montserrat-Medium.woff2') format('woff2'),
+  url('../fonts/Montserrat-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap; /* шрифты будут загружены до тех пор пока пользователь не загрузит шрифт */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat-SemiBold'),
+  url('../fonts/Montserrat-SemiBold.woff2') format('woff2'),
+  url('../fonts/Montserrat-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap; /* шрифты будут загружены до тех пор пока пользователь не загрузит шрифт */
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat-ExtraBold'),
+  url('../fonts/Montserrat-ExtraBold.woff2') format('woff2'),
+  url('../fonts/Montserrat-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap; /* шрифты будут загружены до тех пор пока пользователь не загрузит шрифт */
+}
+
+body {
+  min-width: 1800px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+/* glob */
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+/* общие классы */
+.container {
+  width: 1800px;
+  padding: 0 15px;
+  margin: 0 auto;  /* центрирование по горизонтали */
+}
+
+.btn {
+  font-weight: bold;
+  font-size: 23.4581px;
+  line-height: 29px;
+  text-align: center;
+  color: var(--white-color);
+  background: var(--orange);
+}
+
+.section-title {
+  margin: 0;
+  margin-top: 100px;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 59px;
+  color: var(--main-text-color);
+}
+
+.section-descr {
+  margin: 0;
+  margin-top: 21px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 32.5px;
+  color: var(--main-text-color);
+}
+
+/* header */
+.header {
+  background: var(--white-color);
+  box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+  height: 100px;
+  align-items: center;
+}
+
+.header-logo {
+  margin-right: auto; /* все что справа от логотипа будет прижата к правому краю */
+}
+
+.header-list {
+  align-items: center;
+}
+
+.header-list-item {
+  margin-right: 85px;
+}
+
+.header-list__link {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--main-text-color);
+  border-bottom: 2px solid var(--white-color);
+  transition-property: border, color;
+  transition-duration: .3s;
+  transition-timing-function: ease;
+}
+
+.header-list__link:hover {
+  border-bottom: 2px solid var(--orange);
+}
+
+.header-list__link:focus {
+  outline: 2px solid var(--orange);
+}
+
+.header-list__link:active {
+  outline: none;
+  border-bottom: 2px solid var(--dark-orange);
+  color: var(--dark-orange);
+}
+
+.search:hover svg rect {
+  fill: var(--orange);
+  transition: all .3s ease-in-out;
+}
+
+.search:hover svg path {
+  stroke: var(--orange);
+  transition: all .3s ease-in-out;
+}
+
+.search:focus {
+  outline: none;
+}
+
+.search:focus svg {
+  outline: 2px solid var(--orange);
+}
+
+/* hero */
+.hero-container {
+  flex-direction: column;
+  padding-top: 100px;
+  padding-left: 80px;
+  height: 620px;
+  background-image: url('../img/hero-1.jpg');
+  background-size: cover; /* заполняет всю ширину или высоту блока */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hero-title {
+  margin: 0;
+  padding-bottom: 24px;
+  width: 1000px;
+  font-weight: 800;
+  font-size: 70px;
+  line-height: 85px;
+  color: var(--white-color);
+}
+
+.hero-descr {
+  margin: 0;
+  width: 890px;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--white-color);
+}
+
+.btn-hero {
+  margin-top: 90px;
+  width: 280px;
+  height: 78px;
+  transition: background .3s ease;
+}
+
+.btn-hero:hover {
+  background: rgba(255, 153, 0, 0.7);
+}
+
+.btn-hero:focus {
+  outline: none;
+  background: rgba(255, 153, 0, 0.7);
+}
+
+.btn-hero:active {
+  background: var(--dark-orange);
+}
+
+/* about us */
+.section-about-us__descr {
+  width: 1235px;
+}
+
+.section-about-us__info {
+  padding-top: 50px;
+}
+
+.section-about-us__info__block {
+  position: relative;
+  margin-right: 32px;
+  width: 868px;
+  height: 622px;
+  background-image: url('../img/Rectangle_2.jpg');
+  background-size: cover; /* заполняет всю ширину или высоту блока */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.section-about-us__info__position {
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+  padding: 50px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.section-about-us__info__block__descr {
+  margin: 0;
+  margin-right: auto;
+  width: 454px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 32px;
+  color: var(--white-color);
+}
+
+.btn-about-us {
+  padding: 17px 36px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  color: var(--white-color);
+  background: none;
+  border: 3px solid var(--orange);
+  transition-property: border, background;
+  transition-duration: .3s;
+  transition-timing-function: ease;
+}
+
+.btn-about-us:hover {
+  background: var(--orange);
+}
+
+.btn-about-us:focus {
+  outline: none;
+  background: var(--orange);
+}
+
+.btn-about-us:active {
+  border: 3px solid var(--dark-orange);
+  background: var(--dark-orange);
+}
+
+.section-about-us__info__benefits {
+  flex-direction: column;
+}
+
+.section-about-us__info__benefits__block {
+  flex-direction: column;
+  padding: 63px 60px;
+  width: 870px;
+  height: 295px;
+  border: 1px solid var(--footer-text-color);
+}
+
+.section-about-us__info__benefits__block:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.about-us__svg__fig1 {
+  background-image: url('../img/Frame_16.svg');
+  background-repeat: no-repeat;
+  background-size: 190px 165px;
+  background-position: 59px 63px;
+}
+
+.about-us__svg__fig2 {
+  background-image: url('../img/Frame_12.svg');
+  background-repeat: no-repeat;
+  background-size: 190px 165px;
+  background-position: 59px 63px;
+}
+
+.about-us__block1-title {
+  margin: 0;
+  padding-left: 240px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--main-text-color);
+}
+
+.about-us__block1__descr {
+  margin: 0;
+  margin-top: 10px;
+  padding-left: 240px;
+  width: 690px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 32px;
+  color: var(--main-text-color);
+}
+
+/* working */
+.section-working__list {
+  margin-top: 49px;
+  margin-bottom: 46px;
+}
+
+.section-working__link {
+  display: inline-block;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--main-text-color);
+  transition: color .3s ease;
+}
+
+.section-working__link:hover {
+  color: var(--orange);
+}
+
+.section-working__link:focus {
+  outline: 2px solid var(--orange);
+}
+
+.section-working__link:active {
+  outline: none;
+  color: var(--dark-orange);
+}
+
+.section-working__first {
+  color: var(--orange);
+}
+
+.section-working__item:not(:last-child) {
+  margin-right: 86px;
+}
+
+.section-working__descr {
+  padding-bottom: 2px;
+}
+
+.working__descr__text {
+  margin-right: 30px;
+  width: 870px;
+  height: 468px;
+}
+
+.working__descr__title {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--main-text-color);
+}
+
+.working__descr__main {
+  margin: 0;
+  margin-bottom: 49px;
+  padding-top: 9px;
+  width: 760px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 32px;
+  color: var(--main-text-color);
+}
+
+.btn-working {
+  margin-right: 29px;
+  padding: 20px 38px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--white-color);
+  transition: background .3s ease;
+}
+
+.btn-working:hover {
+  background: var(--orange-s-working);
+}
+
+.btn-working:focus {
+  outline: none;
+  background: var(--orange-s-working);
+}
+
+.btn-working:active {
+  outline: none;
+  background: var(--dark-orange);
+}
+
+.btn-working__contract {
+  padding: 19px 37px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--main-text-color);
+  background: none;
+  outline: 1px solid var(--main-text-color);
+  transition-property: background, color;
+  transition-duration: .3s;
+  transition-timing-function: ease;
+}
+
+.btn-working__contract:hover {
+  outline: none;
+  color: var(--white-color);
+  background: var(--gray);
+}
+
+.btn-working__contract:focus {
+  outline: none;
+  color: var(--white-color);
+  background: var(--gray);
+}
+
+.btn-working__contract:active {
+  outline: none;
+  color: var(--white-color);
+  background: var(--black-color);
+}
+
+.working__descr__img {
+  padding-top: 9px;
+  width: 870px;
+  height: 460px;
+}
+
+/* questions */
+.section-questions-list {
+  flex-direction: column;
+  padding-top: 42px;
+  padding-bottom: 100px;
+}
+
+.section-questions-item {
+  align-items: center;
+  margin-top: -1px;
+  padding: 30px 0;
+  border-top: 1px solid var(--footer-text-color);
+  border-bottom: 1px solid var(--footer-text-color);
+  transition-property: border .5s ease-in-out;
+}
+
+.section-questions-item:hover {
+  z-index: 1;
+  border-top: 1px solid var(--orange);
+  border-bottom: 1px solid var(--orange);
+}
+
+.section-questions-item:hover h3 {
+  color: var(--orange);
+  transition: all .3s ease-in-out;
+}
+
+.section-questions-item:hover svg ellipse {
+  fill: var(--orange);
+  transition: all .5s ease-in-out;
+}
+
+.section-questions-item:hover svg path {
+  fill: var(--white-color);
+  transition: all .5s ease-in-out;
+}
+
+/* focus=section-questions */
+.section-questions-item:focus {
+  z-index: 1;
+  outline: none;
+  border-top: 1px solid var(--orange);
+  border-bottom: 1px solid var(--orange);
+}
+
+.section-questions-item:focus h3 {
+  color: var(--orange);
+}
+
+.section-questions-item:focus svg ellipse {
+  fill: var(--orange);
+}
+
+.section-questions-item:focus svg path {
+  fill: var(--white-color);
+}
+
+.questions-item__text {
+  margin: 0;
+  margin-right: auto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--main-text-color);
+}
+
+/* footer */
+.footer {
+  padding: 50px 0;
+  background: var(--footer-backgr);
+}
+
+.footer-info {
+  width: 34%;
+}
+
+.footer-info__list {
+  padding-top: 16px;
+  padding-bottom: 90px;
+}
+
+.footer-info__link {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 36px;
+  color: var(--footer-text-color);
+  transition: color .3s ease;
+}
+
+.footer-info__link:hover {
+  color: var(--orange);
+}
+
+.footer-info__link:focus {
+  outline: 2px solid var(--orange);
+}
+
+.footer-info__link:active {
+  outline: none;
+  color: var(--dark-orange);
+}
+
+.footer-social-btn:not(:last-child) {
+  margin-right: 25px;
+}
+
+.footer-social-btn:hover svg path {
+  fill: var(--orange);
+  transition: all .3s ease-in-out;
+}
+
+.footer-social-btn:focus {
+  outline: none;
+}
+
+.footer-social-btn:focus svg {
+  outline: 2px solid var(--orange);
+}
+/*
+.footer-social-btn:active {
+  outline: none;
+} */
+
+.footer-social-btn:active svg path {
+  fill: var(--dark-orange);
+}
+
+.footer-application {
+  margin-right: auto;
+  width: 32.2%;
+}
+
+.footer-application__title {
+  margin: 0;
+  padding-top: 2px;
+  font-weight: normal;
+  font-size: 48px;
+  line-height: 59px;
+  color: var(--footer-text-color);
+}
+
+.footer-form__application {
+  flex-direction: column;
+  padding-top: 23px;
+  padding-bottom: 32px;
+}
+
+.application__contact {
+  padding: 15px 24px;
+  width: 100%;
+  height: 60px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 32px;
+  color: var(--footer-text-color);
+  background: var(--form-backgr);
+  border: none;
+  transition: background .3s ease;
+}
+
+.application__contact:hover {
+  background: var(--gray);
+}
+
+.application__contact:focus {
+  background: var(--gray);
+  outline: none;
+}
+
+.application__contact:active {
+  outline: none;
+  background: var(--gray);
+}
+
+.application__contact:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.application__message {
+  height: 150px;
+  resize: none;  /* чтобы пользователь не мог менять размер формы сам */
+}
+
+.footer-form__btn__menu {
+  align-items: center;
+}
+
+.btn-footer {
+  margin-right: 21px;
+  padding: 19px 51px;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--white-color);
+  transition: background .3s ease;
+}
+
+.btn-footer:hover {
+  background: var(--orange-s-working);
+}
+
+.btn-footer:focus {
+  outline: none;
+  background: var(--orange-s-working);
+}
+
+.btn-footer:active {
+  outline: none;
+  background: var(--dark-orange);
+}
+
+.application__checkbox {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.application__checkbox+label {
+  display: inline-flex;   /* Элемент ведёт себя как строчный и выкладывает содержимое согласно флекс-модели */
+  align-items: center;
+  user-select: none;    /* Пользователю запрещено выделять элемент */
+}
+
+.application__checkbox+label::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;   /* запрещаем сжатие */
+  flex-grow: 0;   /* запрещаем рост */
+  margin-right: 4px;
+  margin-top: -3px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--footer-text-color);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.application__checkbox:checked+label::before {
+  background-image: url('../img/tick.svg');
+}
+
+/* стили при наведении курсора на checkbox */
+.application__checkbox:not(:disabled):not(:checked)+label:hover::before {
+  border-color: var(--border-checkbox);
+}
+/* стили для активного состояния чекбокса (при нажатии на него) */
+.application__checkbox:not(:disabled):active+label::before {
+  border-color: var(--border-checkbox);
+}
+/* стили для чекбокса, находящегося в фокусе */
+.application__checkbox:focus+label::before {
+  box-shadow: 0 0 0 0.2rem rgba(220, 223, 226, 0.25);
+}
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.application__checkbox:focus:not(:checked)+label::before {
+  border-color: var(--white-color);
+}
+/* стили для чекбокса, находящегося в состоянии disabled */
+.application__checkbox:disabled+label::before {
+  background-color: var(--footer-text-color);
+}
+
+.checbox-text {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  color: var(--footer-text-color);
+}
+
+.footer-descr {
+  margin: 0;
+  padding-top: 88px;
+  width: 363px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 32px;
+  color: var(--footer-text-color);
+}
